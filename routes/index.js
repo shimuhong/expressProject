@@ -13,23 +13,39 @@ var connection = mysql.createConnection({
 // // 建立连接
 connection.connect();
 
-var sql = 'select * from runoob_tbl';
-var rsData = '';
-  
 
-// console.log('===', rsData)
+  
+function querySQL(sql) {
+  return new Promise((resolve, reject)=> {
+    var rsData = '';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        console.log('[SELECT ERROR]：', err.message);
+        reject(err)
+      }
+      rsData = JSON.stringify(result)
+      console.log('data:', rsData);
+      resolve(result)
+    })
+  })
+}
+
 /* GET home page. */
 router.get('/api1', function(req, res, next) {
   // res.render('index', { title: 'Express11' });
-  connection.query(sql, function(err, result) {
-    if (err) {
-      console.log('[SELECT ERROR]：', err.message);
-    }
-    rsData = JSON.stringify(result)
-    console.log('==', rsData);
-    console.log(result);
-    res.send({data: result});
+  querySQL('select * from runoob_tbl').then((data)=> {
+    res.send({data});
   })
+
+  // connection.query(sql, function(err, result) {
+  //   if (err) {
+  //     console.log('[SELECT ERROR]：', err.message);
+  //   }
+  //   rsData = JSON.stringify(result)
+  //   console.log('==', rsData);
+  //   console.log(result);
+  //   res.send({data: result});
+  // })
 
 });
 router.get('/api2', function(req, res, next) {
