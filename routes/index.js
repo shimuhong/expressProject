@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-
+/*
 // 创建连接mysql配置
 var connection = mysql.createConnection({
   host: '127.0.0.1', //数据库地址
@@ -29,25 +29,19 @@ function querySQL(sql) {
     })
   })
 }
-
+*/
 /* GET home page. */
+/*
 router.get('/api1', function(req, res, next) {
   // res.render('index', { title: 'Express11' });
   querySQL('select * from runoob_tbl').then((data)=> {
     res.send({data});
   })
 
-  // connection.query(sql, function(err, result) {
-  //   if (err) {
-  //     console.log('[SELECT ERROR]：', err.message);
-  //   }
-  //   rsData = JSON.stringify(result)
-  //   console.log('==', rsData);
-  //   console.log(result);
-  //   res.send({data: result});
-  // })
+
 
 });
+*/
 router.get('/api2', function(req, res, next) {
   res.send('respond with a resource222');
 });
