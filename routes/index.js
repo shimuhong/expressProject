@@ -1,5 +1,5 @@
 var express = require('express');
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var router = express.Router();
 /*
 // 创建连接mysql配置
@@ -43,11 +43,12 @@ router.get('/api1', function(req, res, next) {
 });
 */
 router.get('/api2', function(req, res, next) {
-  res.send('respond with a resource222');
+  console.log('==get query:', req.query)
+  res.send(req.query);
 });
 router.post('/api3', function(req, res, next) {
-  console.log('==api3 req:', req.body)
-  res.send({data: req.body});
+  console.log('==post body:', req.body)
+  res.send(req.body);
   // res.send('asdadasdas');
 });
 module.exports = router;
